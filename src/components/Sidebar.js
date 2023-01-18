@@ -66,7 +66,7 @@ const Sidebar = ({ user, closeToggle }) => {
       {user && (
         <Link
           to={`user-profile/${user._id}`}
-          className="flex my-5 mb-3 gap-2 p-2 items-center bg_gradient cursor-pointer shadow-lg rounded-lg mx-3"
+          className="flex my-5 mb-3 gap-2 p-3 items-center bg_gradient cursor-pointer shadow-lg rounded-lg mx-3"
           onClick={handleCloseSidebar}
         >
           <img
@@ -75,6 +75,7 @@ const Sidebar = ({ user, closeToggle }) => {
             alt="user-profile"
           />
           <p className="text-white"> {user.userName} </p>
+          <IoIosArrowForward color="white" />
         </Link>
       )}
     </div>
