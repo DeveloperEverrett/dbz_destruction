@@ -5,6 +5,14 @@ import { IoIosArrowForward } from 'react-icons/io';
 
 import logo from '../assets/DBZlogo.png';
 
+const categories = [
+  { name: 'Z Fighters' },
+  { name: 'Wallpapers' },
+  { name: 'DBZ Items' },
+  { name: 'Special Attacks' },
+  { name: 'DBZ Cuisine' },
+];
+
 const Sidebar = ({ user, closeToggle }) => {
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
@@ -33,12 +41,42 @@ const Sidebar = ({ user, closeToggle }) => {
             className={(isActive) =>
               isActive ? isActiveStyle : isNotActiveStyle
             }
+            onClick={handleCloseSidebar}
           >
             <RiHomeFill />
             Home
           </NavLink>
+          <h3 className="mt-2 px-5 text-base 2xl:text-xl">
+            Discover Categories
+          </h3>
+          {categories.slice(0, categories.length - 1).map((category) => (
+            <NavLink
+              to={`/category/${category.name}`}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+              onClick={handleCloseSidebar}
+              key={category.name}
+            >
+              {category.name}
+            </NavLink>
+          ))}
         </div>
       </div>
+      {user && (
+        <Link
+          to={`user-profile/${user._id}`}
+          className="flex my-5 mb-3 gap-2 p-2 items-center bg_gradient cursor-pointer shadow-lg rounded-lg mx-3"
+          onClick={handleCloseSidebar}
+        >
+          <img
+            src={user.image}
+            className="w-10 h-10 rounded-full"
+            alt="user-profile"
+          />
+          <p className="text-white"> {user.userName} </p>
+        </Link>
+      )}
     </div>
   );
 };
