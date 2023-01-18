@@ -8,8 +8,8 @@ const Pins = ({ user }) => {
 
   return (
     <div className="px-2 md:px-5">
-      <div className="bg-gray-50">
-        <Navbar searchTerm={searchTerm} setSearch={setSearchTerm} />
+      <div className=" rounded-md">
+        <Navbar searchTerm={searchTerm} setSearch={setSearchTerm} user={user} />
       </div>
       <div className="h-full">
         <Routes>
@@ -23,7 +23,11 @@ const Pins = ({ user }) => {
           <Route
             path="/search"
             element={
-              <Search searchTerm={searchTerm} setSearch={setSearchTerm} />
+              <Search
+                searchTerm={searchTerm}
+                setSearch={setSearchTerm}
+                user={user}
+              />
             }
           />
         </Routes>

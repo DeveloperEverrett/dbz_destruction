@@ -19,13 +19,13 @@ const Sidebar = ({ user, closeToggle }) => {
   };
 
   const isNotActiveStyle =
-    'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
+    'flex items-center px-5 gap-3 text-gray-200 hover:text-black transition-all duration-200 ease-in-out capitalize';
 
   const isActiveStyle =
     'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize';
 
   return (
-    <div className="flex flex-col justfiy-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
+    <div className="flex flex-col justfiy-between bg-blue-500 h-full overflow-y-scroll min-w-210 hide-scrollbar">
       <div className="flex flex-col">
         <Link to="/" className="flex px-5 gap-2 my-6 pt-1 w-190 items-center">
           <img
@@ -46,7 +46,7 @@ const Sidebar = ({ user, closeToggle }) => {
             <RiHomeFill />
             Home
           </NavLink>
-          <h3 className="mt-2 px-5 text-base 2xl:text-xl">
+          <h3 className="mt-2 px-5 text-base 2xl:text-xl text-white">
             Discover Categories
           </h3>
           {categories.slice(0, categories.length - 1).map((category) => (
