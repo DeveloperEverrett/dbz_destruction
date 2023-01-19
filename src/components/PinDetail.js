@@ -84,8 +84,17 @@ const PinDetail = ({ user }) => {
                 alt="user-profile"
                 className="w-10 h-10 rounded-full cursor-pointer"
               />
+              <div className="flex flex-col">
+                <p className="font-bold">{item.postedBy?.userName}</p>
+                <p> {item.comment} </p>
+              </div>
             </div>
           ))}
+        </div>
+        <div className="flex flex-wrap mt-6 gap-3">
+          <Link to={`/user-profile/${user._id}`}>
+            <img />{' '}
+          </Link>
         </div>
       </div>
     </div>
