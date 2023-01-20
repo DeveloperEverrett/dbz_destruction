@@ -15,6 +15,29 @@ const PinDetail = ({ user }) => {
   const [addingComment, setAddingComment] = useState(false);
   const { pinId } = useParams();
 
+  const addComment = () => {
+    if (comment) {
+      setAddingComment(true);
+
+      client
+        .patch(pinId)
+        .setIfMissing({ comments: [] })
+        .insert('after', 'comments[-1]', [
+          {
+            comment,
+            _key: uuidv4(),
+            postedBy: { _type: 'postedBy', _ref: user._id },
+          },
+        ])
+        .commit()
+        .then(() => {
+          fetchPinDetails();
+          setComment('');
+          setAddingComment(false);
+        });
+    }
+  };
+
   const fetchPinDetails = () => {
     const query = pinDetailQuery(pinId);
 
@@ -93,8 +116,20 @@ const PinDetail = ({ user }) => {
         </div>
         <div className="flex flex-wrap mt-6 gap-3">
           <Link to={`/user-profile/${user._id}`}>
-            <img />{' '}
+            <img
+              src={user.image}
+              className="w-10 h-10 rounded-full cursor-pointer"
+              alt="user-profile"
+            />
           </Link>
+          <input
+            className=" flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300"
+            type="text"
+            placeholder="Add a comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button></button>
         </div>
       </div>
     </div>
